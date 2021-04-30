@@ -12,7 +12,8 @@ body {
 .header {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  box-sizing: border-box;
+  //height: 90vh;
   color: rgb(231, 231, 240);
   justify-content: center;
   text-align: center;
@@ -21,16 +22,25 @@ body {
   border-radius: 10px;
   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
 }
+.brand-title {
+  cursor: pointer;
+}
+.brand-title:hover {
+  color: blue;
+}
 
 .haeder-text {
-  margin: 20px;
+  margin-top: 20px;
+  margin-bottom: 0;
+  margin-right: 20px;
+  margin-left: 20px;
 }
 .img {
   margin: auto;
 }
 
 .main-content {
-  height: 90vh;
+  height: 80vh;
   color: rgb(231, 231, 240);
   display: flex;
   justify-content: center;

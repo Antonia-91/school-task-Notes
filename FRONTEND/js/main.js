@@ -2,6 +2,10 @@ console.log("hej");
 
 // ---- IMPORT JS -----//
 import { getUser } from "/FRONTEND/js/login.js";
+import { printList } from "/FRONTEND/js/allDocs.js";
+import { createNewDoc } from "/FRONTEND/js/newDoc.js";
+import { header } from "/FRONTEND/js/header.js";
+import { docItem } from "/FRONTEND/js/doc-item.js";
 
 // --- Nav bar media (max-width: 800px) ---//
 
@@ -23,6 +27,12 @@ window.addEventListener("load", () => {
 
 //--------------  GLOBAL EVENTLISTENERS --------------- //
 window.addEventListener("click", (e) => {
+  // show header
+  if (e.target.matches(".brand-title")) {
+    console.log("header");
+    header();
+  }
+
   // login
   if (e.target.matches("#login-btn")) {
     console.log("click");
@@ -41,6 +51,13 @@ window.addEventListener("click", (e) => {
       });
     }
   }
+
+  // Show create new Doc
+  if (e.target.matches("#new-doc")) {
+    console.log("newDoc");
+    createNewDoc();
+  }
+
   // save new document
   if (e.target.matches("#save-doc-btn")) {
     console.log("saveDoc");
@@ -54,6 +71,18 @@ window.addEventListener("click", (e) => {
       };
       console.log(newDocument);
     }
+  }
+
+  // show list of all docs
+  if (e.target.matches("#all-doc")) {
+    console.log("AllDoc");
+    printList();
+  }
+
+  // show dot-Item
+  //let ulChild = document.querySelector("#all-doc > li");
+  if (e.target.matches("#doc-list")) {
+    console.log("li-click");
   }
 });
 

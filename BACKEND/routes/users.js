@@ -30,11 +30,30 @@ router.get("/", function (req, res, next) {
   });
 });
 
+/* GET document listing. */
+router.get("/documents", function (req, res, next) {
+  req.app.locals.con.connect(function (err) {
+    if (err) {
+      console.log(err);
+    }
+
+    let sql = `SELECT * FROM document `;
+
+    req.app.locals.con.query(sql, function (err, result) {
+      if (err) {
+        console.log(err);
+      }
+      console.log("result", result);
+      res.json(result);
+    });
+  });
+});
+
 // POST login
 router.post("/login", function (req, res) {
   const { userName, password } = req.body;
 
-  let sql = `SELECT * FROM konto WHERE userName = '${userName}' AND pass = '${password}'`;
+  let sql = `SELECT * FROM konto WHERE userName = ${userName} AND pass = ${password}`;
 
   req.app.locals.con.connect(sql, function (err, result) {
     if (err) {
