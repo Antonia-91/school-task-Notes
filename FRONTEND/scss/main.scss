@@ -1,0 +1,42 @@
+@import "nav";
+@import "allDocs";
+@import "newDoc";
+@import "docItem";
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap");
+
+body {
+  background-color: rgb(95, 92, 92);
+  font-family: "Roboto", sans-serif;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  color: rgb(231, 231, 240);
+  justify-content: center;
+  text-align: center;
+  margin: 15px;
+  font-size: 15px;
+  border-radius: 10px;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+}
+
+.haeder-text {
+  margin: 20px;
+}
+.img {
+  margin: auto;
+}
+
+.main-content {
+  height: 90vh;
+  color: rgb(231, 231, 240);
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin: 15px;
+  font-size: 12px;
+  border-radius: 10px;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+}

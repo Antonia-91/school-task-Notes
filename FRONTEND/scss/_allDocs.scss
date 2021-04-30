@@ -1,0 +1,14 @@
+.document-container {
+  display: flex;
+  flex-direction: column;
+}
+.all-doc {
+  list-style: none;
+  line-height: 1.5rem;
+  font-size: 1rem;
+}
+
+li:hover {
+  color: black;
+  cursor: pointer;
+}
