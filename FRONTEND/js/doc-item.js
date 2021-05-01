@@ -5,9 +5,9 @@ export function docItem() {
 
 <div class="doc-item">
         <div>
-          <h3>Title</h3>
+          <h3 id="item-title">Title</h3>
           <span>1/1/2021</span>
-          <p>
+          <p id="item-content">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat
             officiis ratione suscipit voluptates quidem corporis modi ad
             quisquam? Illo culpa tempora distinctio, ipsa deleniti neque

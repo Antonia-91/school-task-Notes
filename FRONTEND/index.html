@@ -25,6 +25,32 @@
         </a>
         <div class="navbar-links">
           <ul>
+            <li>
+              <input type="text" id="login-input" placeholder="userName" />
+            </li>
+            <li>
+              <input
+                type="password"
+                id="password-input"
+                placeholder="password"
+              />
+            </li>
+            <li id="login-btn">Login</li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div class="nav-holder">
+      <nav class="navbar">
+        <div class="brand-title">document manager</div>
+
+        <a href="#" class="toggle-button">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </a>
+        <div class="navbar-links">
+          <ul>
             <li id="logOut-btn">LogOut</li>
             <li id="all-doc">All Documents</li>
             <li id="new-doc">New Document</li>
@@ -40,9 +66,9 @@
     <div class="main-content" id="main-conten">
       <div class="doc-item">
         <div>
-          <h3>Title</h3>
+          <h3 id="item-title">Title</h3>
           <span>1/1/2021</span>
-          <p>
+          <p id="item-content">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat
             officiis ratione suscipit voluptates quidem corporis modi ad
             quisquam? Illo culpa tempora distinctio, ipsa deleniti neque

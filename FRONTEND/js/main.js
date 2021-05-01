@@ -2,10 +2,11 @@ console.log("hej");
 
 // ---- IMPORT JS -----//
 import { getUser } from "/FRONTEND/js/login.js";
-import { printList } from "/FRONTEND/js/allDocs.js";
-import { createNewDoc, saveNewDoc } from "/FRONTEND/js/newDoc.js";
+import { printList } from "/FRONTEND/js/all-docs.js";
+import { createNewDoc, saveNewDoc } from "/FRONTEND/js/new-doc.js";
 import { header } from "/FRONTEND/js/header.js";
 import { docItem } from "/FRONTEND/js/doc-item.js";
+import { edit } from "/FRONTEND/js/edit-doc.js";
 
 // --- Nav bar media (max-width: 800px) ---//
 
@@ -23,7 +24,7 @@ console.log(userLoggedIn);
 //-------------- EVENTLISTENERS --------------- //
 window.addEventListener("load", () => {
   updateNavBar();
-  header();
+  createNewDoc();
 });
 
 //--------------  GLOBAL EVENTLISTENERS --------------- //
@@ -37,8 +38,8 @@ window.addEventListener("click", (e) => {
   // login
   if (e.target.matches("#login-btn")) {
     console.log("click");
-    let userName = document.querySelector("#userName");
-    let loginPassword = document.querySelector("#loginPassword");
+    let userName = document.querySelector("#login-input");
+    let loginPassword = document.querySelector("#password-input");
 
     if (userName.value.trim() != "" && loginPassword.value.trim() != "") {
       let loginUser = {
@@ -81,10 +82,21 @@ window.addEventListener("click", (e) => {
     printList();
   }
 
-  // show dot-Item
+  // show doc-Item // OBS HUR FÅNGAR JAG EN LI MED ETT DYNAMISKT ID ?
   //let ulChild = document.querySelector("#all-doc > li");
   if (e.target.matches("#doc-list")) {
     console.log("li-click");
+  }
+
+  // Edit Document
+  if (e.target.matches("#edit-btn")) {
+    let itemTitle = document.querySelector("#item-title").textContent;
+    let itemContent = document.querySelector("#item-content").textContent;
+    let obj = [{ titel: itemTitle }, { conten: itemContent }];
+
+    console.log(obj);
+    edit(obj);
+    console.log("click");
   }
 });
 
