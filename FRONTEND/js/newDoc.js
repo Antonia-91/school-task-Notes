@@ -1,5 +1,19 @@
 //https://www.youtube.com/watch?v=unrmB4H7Wmw&t=135s&ab_channel=ZinoTrustTutorials
 
+export function saveNewDoc() {
+  return fetch("http://localhost:3000/users/new", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(user),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+      localStorage.setItem("KeyDocuments", JSON.stringify(data));
+      return data;
+    });
+}
+
 export function createNewDoc() {
   document.querySelector(".main-content").innerHTML = "";
 

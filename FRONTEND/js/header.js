@@ -16,8 +16,8 @@ export function header() {
       <img
         src="/FRONTEND/IMG_167C0677EF4A-1.jpeg"
         alt=""
-        width="500px"
-        height="500px"
+        width="400px"
+        height="400px"
       />
     </div>
   </div>

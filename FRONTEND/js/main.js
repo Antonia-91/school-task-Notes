@@ -3,7 +3,7 @@ console.log("hej");
 // ---- IMPORT JS -----//
 import { getUser } from "/FRONTEND/js/login.js";
 import { printList } from "/FRONTEND/js/allDocs.js";
-import { createNewDoc } from "/FRONTEND/js/newDoc.js";
+import { createNewDoc, saveNewDoc } from "/FRONTEND/js/newDoc.js";
 import { header } from "/FRONTEND/js/header.js";
 import { docItem } from "/FRONTEND/js/doc-item.js";
 
@@ -23,6 +23,7 @@ console.log(userLoggedIn);
 //-------------- EVENTLISTENERS --------------- //
 window.addEventListener("load", () => {
   updateNavBar();
+  header();
 });
 
 //--------------  GLOBAL EVENTLISTENERS --------------- //
@@ -70,6 +71,7 @@ window.addEventListener("click", (e) => {
         content: content.value.trim(),
       };
       console.log(newDocument);
+      saveNewDoc(newDocument);
     }
   }
 
