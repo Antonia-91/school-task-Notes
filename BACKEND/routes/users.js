@@ -18,7 +18,7 @@ router.get("/", function (req, res, next) {
       console.log(err);
     }
 
-    let sql = `SELECT * FROM konto `;
+    let sql = `SELECT * FROM document `;
 
     req.app.locals.con.query(sql, function (err, result) {
       if (err) {
@@ -31,13 +31,15 @@ router.get("/", function (req, res, next) {
 });
 
 /* GET documents listing. */
-router.get("/documents", function (req, res, next) {
+router.get("/documents/:id", function (req, res, next) {
+  const userID = req.params.id;
+  console.log(userID);
   req.app.locals.con.connect(function (err) {
     if (err) {
       console.log(err);
     }
 
-    let sql = `SELECT * FROM document `;
+    let sql = `SELECT doc_id, doc_title, timeStamp  FROM document WHERE doc_author = ${userID}`;
 
     req.app.locals.con.query(sql, function (err, result) {
       if (err) {
@@ -48,6 +50,27 @@ router.get("/documents", function (req, res, next) {
     });
   });
 });
+/* GET document BY ID */
+router.get("/document/:id", function (req, res, next) {
+  const id = req.params.id;
+  console.log(id);
+  req.app.locals.con.connect(function (err) {
+    if (err) {
+      console.log(err);
+    }
+
+    let sql = `SELECT *  FROM document WHERE doc_id = ${id}`;
+
+    req.app.locals.con.query(sql, function (err, result) {
+      if (err) {
+        console.log(err);
+      }
+      console.log("result", result);
+      res.json(result);
+    });
+  });
+});
+
 /* POST UPDATE document . */
 router.put("/update/:id", (req, res) => {
   if (JSON.stringify(req.body) === "{}") {
@@ -72,17 +95,18 @@ router.put("/update/:id", (req, res) => {
 // POST login
 router.post("/login", function (req, res) {
   const { userName, password } = req.body;
-  console.log(reg.body);
+  console.log(req.body);
+  console.log(userName, password);
 
-  // let sql = `SELECT * FROM konto WHERE userName = ${userName} AND pass = ${password}`;
+  let sql = `SELECT * FROM konto WHERE userName = '${userName}' AND pass = '${password}'`;
 
-  // req.app.locals.con.connect(sql, function (err, result) {
-  //   if (err) {
-  //     console.log(err);
-  //   }
-  //   console.log(result);
-  res.json(result);
-  //});
+  req.app.locals.con.query(sql, function (err, result) {
+    if (err) {
+      console.log(err);
+    }
+    console.log(result);
+    res.json(result);
+  });
 });
 
 // // POST login

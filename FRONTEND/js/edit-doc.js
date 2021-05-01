@@ -6,7 +6,9 @@ export function edit(obj) {
     <div class="doc">
     <h2>Create new Document</h2>
     <div class="doc-input">
+   
       <div class="doc-wrapper">
+      <form>
         <input
           type="text"
           id="doc-title"
@@ -21,6 +23,7 @@ export function edit(obj) {
           <span><i class="fas fa-plus"></i></span>
           Save Document
         </button>
+        </form>
       </div>
     </div>
   </div>

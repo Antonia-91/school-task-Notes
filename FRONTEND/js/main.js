@@ -1,12 +1,30 @@
-console.log("hej");
+// // Import TinyMCE
+// import tinymce from "/FRONTEND/node_modules/tinymce/tinymce.js";
+
+// // Default icons are required for TinyMCE 5.3 or above
+// import "/FRONTEND/node_modules/tinymce/icons/default";
+
+// // A theme is also required
+// import "/FRONTEND/node_modules/tinymce/themes/silver";
+
+// // Any plugins you want to use has to be imported
+// import "/FRONTEND/node_modules/tinymce/plugins/paste";
+// import "/FRONTEND/node_modules/tinymce/plugins/link";
+
+// // Initialize the app
+// tinymce.init({
+//   selector: "#doc-content",
+//   plugins: ["paste", "link"],
+// });
 
 // ---- IMPORT JS -----//
 import { getUser } from "/FRONTEND/js/login.js";
-import { printList } from "/FRONTEND/js/all-docs.js";
+import { printList, getAllDocs } from "/FRONTEND/js/all-docs.js";
 import { createNewDoc, saveNewDoc } from "/FRONTEND/js/new-doc.js";
 import { header } from "/FRONTEND/js/header.js";
 import { docItem } from "/FRONTEND/js/doc-item.js";
 import { edit } from "/FRONTEND/js/edit-doc.js";
+//import { tinymce } from "/FRONTEND/js/edit-doc.js";
 
 // --- Nav bar media (max-width: 800px) ---//
 
@@ -79,13 +97,24 @@ window.addEventListener("click", (e) => {
   // show list of all docs
   if (e.target.matches("#all-doc")) {
     console.log("AllDoc");
-    printList();
+    let user = JSON.parse(localStorage.getItem("keyUser"));
+    let userId = user[0].person_id;
+
+    getAllDocs(userId);
+    let docs = JSON.parse(localStorage.getItem("keyDocs"));
+    printList(docs);
   }
 
   // show doc-Item // OBS HUR FÅNGAR JAG EN LI MED ETT DYNAMISKT ID ?
   //let ulChild = document.querySelector("#all-doc > li");
-  if (e.target.matches("#doc-list")) {
-    console.log("li-click");
+  if (e.target.matches("#doc-list > li")) {
+    let docId = e.target.id;
+    console.log(e.target.id);
+    let docs = JSON.parse(localStorage.getItem("keyDocs"));
+
+    let doc = docs[docId];
+    console.log(doc, docs);
+    //docItem(docId);
   }
 
   // Edit Document
@@ -103,18 +132,19 @@ window.addEventListener("click", (e) => {
 // ---- DOM functions----- //
 function updateNavBar() {
   let navbar = document.querySelector(".navbar-links > ul");
-
+  let liTamplate = "";
   console.log("print login nav");
 
   if (userLoggedIn) {
-    let liTamplate = `
+    liTamplate = `
     <li id="logOut-btn">LogOut</li>
     <li id="all-doc">All Documents</li>
     <li id="new-doc">New Document</li>
-    
     `;
   } else {
-    let liTamplate = `
+    console.log("not");
+    liTamplate = `
+    
     <li>
     <input type="text" id="login-input" placeholder="userName" />
   </li>
@@ -124,4 +154,6 @@ function updateNavBar() {
   <li id="login-btn">Login</li>
     `;
   }
+
+  navbar.innerHTML = liTamplate;
 }

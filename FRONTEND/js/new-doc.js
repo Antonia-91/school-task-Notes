@@ -22,12 +22,13 @@ export function createNewDoc() {
   <h2>Create new Document</h2>
   <div class="doc-input">
     <div class="doc-wrapper">
+    <form>
       <input
         type="text"
         id="doc-title"
         placeholder="Title of your document"
       />
-      <textarea
+      <textarea 
         id="doc-content"
         placeholder="Write your content here...."
         rows="5"
@@ -36,6 +37,7 @@ export function createNewDoc() {
         <span><i class="fas fa-plus"></i></span>
         Save Document
       </button>
+      </form>
     </div>
   </div>
 </div>
