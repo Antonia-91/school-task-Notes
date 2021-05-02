@@ -43,7 +43,7 @@ console.log(userLoggedIn);
 //-------------- EVENTLISTENERS --------------- //
 window.addEventListener("load", () => {
   updateNavBar();
-  createNewDoc();
+  header();
 });
 
 //--------------  GLOBAL EVENTLISTENERS --------------- //
@@ -106,8 +106,7 @@ window.addEventListener("click", (e) => {
     printList(docs);
   }
 
-  // show doc-Item // OBS HUR FÅNGAR JAG EN LI MED ETT DYNAMISKT ID ?
-  //let ulChild = document.querySelector("#all-doc > li");
+  // show clicked doc-Item
   if (e.target.matches("#doc-list > li")) {
     let docId = e.target.id;
     //console.log(e.target.id);
@@ -129,6 +128,15 @@ window.addEventListener("click", (e) => {
     let myDocument = JSON.parse(localStorage.getItem("keyDoc"));
     //let docId = e.target.id;
     deleteDoc(myDocument);
+  }
+
+  // logout
+  if (e.target.matches("#logOut-btn")) {
+    console.log("logout");
+    localStorage.clear();
+    userLoggedIn = null;
+    updateNavBar();
+    header();
   }
 });
 
