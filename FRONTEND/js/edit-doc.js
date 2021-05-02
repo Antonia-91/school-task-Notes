@@ -1,10 +1,10 @@
 export function edit(obj) {
   document.querySelector(".main-content").innerHTML = "";
-
+  console.log(obj);
   let editTamplate = `
 
     <div class="doc">
-    <h2>Create new Document</h2>
+    <h2>Edit Document</h2>
     <div class="doc-input">
    
       <div class="doc-wrapper">
@@ -12,13 +12,12 @@ export function edit(obj) {
         <input
           type="text"
           id="doc-title"
-          value="${obj[0].title}"
+          value="${obj[0].doc_title}"
         />
         <textarea
           id="doc-content"
-          value="${obj[1].content}"
-          rows="5"
-        ></textarea>
+         rows="5">${obj[0].doc_content}
+        </textarea>
         <button id="save-doc-btn" class="btn" type="button">
           <span><i class="fas fa-plus"></i></span>
           Save Document

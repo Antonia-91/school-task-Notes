@@ -109,6 +109,22 @@ router.post("/login", function (req, res) {
   });
 });
 
+// DELETE
+router.get("/deleteDoc/:id", function (req, res) {
+  const id = req.params.id;
+
+  let sql = `DELETE FROM document WHERE doc_id = '${id}' `;
+  console.log(sql);
+
+  req.app.locals.con.query(sql, function (err, result) {
+    if (err) {
+      console.log(err);
+    }
+    console.log(result);
+    res.json(result);
+  });
+});
+
 // // POST login
 // router.post("/login", function (req, res) {
 //   const { userName, password } = req.body;

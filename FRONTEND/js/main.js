@@ -22,8 +22,9 @@ import { getUser } from "/FRONTEND/js/login.js";
 import { printList, getAllDocs } from "/FRONTEND/js/all-docs.js";
 import { createNewDoc, saveNewDoc } from "/FRONTEND/js/new-doc.js";
 import { header } from "/FRONTEND/js/header.js";
-import { docItem } from "/FRONTEND/js/doc-item.js";
+import { docItem, getDoc } from "/FRONTEND/js/doc-item.js";
 import { edit } from "/FRONTEND/js/edit-doc.js";
+import { deleteDoc } from "/FRONTEND/js/delete.js";
 //import { tinymce } from "/FRONTEND/js/edit-doc.js";
 
 // --- Nav bar media (max-width: 800px) ---//
@@ -109,23 +110,25 @@ window.addEventListener("click", (e) => {
   //let ulChild = document.querySelector("#all-doc > li");
   if (e.target.matches("#doc-list > li")) {
     let docId = e.target.id;
-    console.log(e.target.id);
-    let docs = JSON.parse(localStorage.getItem("keyDocs"));
-
-    let doc = docs[docId];
-    console.log(doc, docs);
-    //docItem(docId);
+    //console.log(e.target.id);
+    getDoc(docId);
+    let myDocument = JSON.parse(localStorage.getItem("keyDoc"));
+    docItem(myDocument);
   }
 
   // Edit Document
   if (e.target.matches("#edit-btn")) {
-    let itemTitle = document.querySelector("#item-title").textContent;
-    let itemContent = document.querySelector("#item-content").textContent;
-    let obj = [{ titel: itemTitle }, { conten: itemContent }];
-
-    console.log(obj);
-    edit(obj);
+    let myDocument = JSON.parse(localStorage.getItem("keyDoc"));
+    edit(myDocument);
     console.log("click");
+  }
+
+  // Delete document
+  if (e.target.matches("#delete-btn")) {
+    console.log("dele");
+    let myDocument = JSON.parse(localStorage.getItem("keyDoc"));
+    //let docId = e.target.id;
+    deleteDoc(myDocument);
   }
 });
 
