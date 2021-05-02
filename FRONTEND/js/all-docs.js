@@ -18,10 +18,10 @@ export function printList(docs) {
     <h2>ALL DOCUMENTS</h2>
     <ul class="all-doc" id="doc-list">
     
-  ${docs.map((item, index) => {
-    console.log(item.timeStamp);
-    return ` <li id="${item.doc_id}"> ${item.doc_title} |  ${item.timeStamp} </li>`;
-  })}
+   ${docs.map((item, index) => {
+     console.log(item.timeStamp);
+     return ` <li id="${item.doc_id}"> ${item.doc_title} |  ${item.timeStamp} </li>`;
+   })}
    </ul>
   </div>
     `;

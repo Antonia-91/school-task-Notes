@@ -1,3 +1,18 @@
+export function saveDoc(content) {
+  console.log("hej");
+  return fetch("http://localhost:3000/users/saveDoc", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(content),
+  })
+    .then((res) => res.json())
+    .then((content) => {
+      console.log(content);
+      localStorage.setItem("KeyDocuments", JSON.stringify(content));
+      return content;
+    });
+}
+
 export function edit(obj) {
   document.querySelector(".main-content").innerHTML = "";
   console.log(obj);
@@ -9,6 +24,8 @@ export function edit(obj) {
    
       <div class="doc-wrapper">
       <form>
+      <input type="hidden" id="refId" value="${obj[0].doc_id}" />
+      <input type="hidden" id="action" value="update" />
         <input
           type="text"
           id="doc-title"
@@ -18,7 +35,7 @@ export function edit(obj) {
           id="doc-content"
          rows="5">${obj[0].doc_content}
         </textarea>
-        <button id="save-doc-btn" class="btn" type="button">
+        <button id="save-edit-btn" class="btn" type="button">
           <span><i class="fas fa-plus"></i></span>
           Save Document
         </button>

@@ -1,21 +1,23 @@
-//https://www.youtube.com/watch?v=unrmB4H7Wmw&t=135s&ab_channel=ZinoTrustTutorials
-
-export function saveNewDoc() {
-  return fetch("http://localhost:3000/users/new", {
+export function saveNewDoc(content) {
+  console.log("hej");
+  return fetch("http://localhost:3000/users/saveDoc", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(user),
+    body: JSON.stringify(content),
   })
     .then((res) => res.json())
-    .then((data) => {
-      console.log(data);
-      localStorage.setItem("KeyDocuments", JSON.stringify(data));
-      return data;
+    .then((content) => {
+      console.log(content);
+      localStorage.setItem("KeyDocuments", JSON.stringify(content));
+      return content;
     });
 }
 
-export function createNewDoc() {
+export function createNewDoc(user) {
   document.querySelector(".main-content").innerHTML = "";
+
+  console.log(JSON.parse(user));
+  user = JSON.parse(user);
 
   let tamplate = `
   <div class="doc">
@@ -23,6 +25,8 @@ export function createNewDoc() {
   <div class="doc-input">
     <div class="doc-wrapper">
     <form>
+    <input type="hidden" id="refId" value="${user[0].person_id}" />
+    <input type="hidden" id="action" value="new" />
       <input
         type="text"
         id="doc-title"

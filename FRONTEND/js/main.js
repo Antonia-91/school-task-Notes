@@ -1,29 +1,10 @@
-// // Import TinyMCE
-// import tinymce from "/FRONTEND/node_modules/tinymce/tinymce.js";
-
-// // Default icons are required for TinyMCE 5.3 or above
-// import "/FRONTEND/node_modules/tinymce/icons/default";
-
-// // A theme is also required
-// import "/FRONTEND/node_modules/tinymce/themes/silver";
-
-// // Any plugins you want to use has to be imported
-// import "/FRONTEND/node_modules/tinymce/plugins/paste";
-// import "/FRONTEND/node_modules/tinymce/plugins/link";
-
-// // Initialize the app
-// tinymce.init({
-//   selector: "#doc-content",
-//   plugins: ["paste", "link"],
-// });
-
 // ---- IMPORT JS -----//
 import { getUser } from "/FRONTEND/js/login.js";
 import { printList, getAllDocs } from "/FRONTEND/js/all-docs.js";
 import { createNewDoc, saveNewDoc } from "/FRONTEND/js/new-doc.js";
 import { header } from "/FRONTEND/js/header.js";
 import { docItem, getDoc } from "/FRONTEND/js/doc-item.js";
-import { edit } from "/FRONTEND/js/edit-doc.js";
+import { edit, saveDoc } from "/FRONTEND/js/edit-doc.js";
 import { deleteDoc } from "/FRONTEND/js/delete.js";
 //import { tinymce } from "/FRONTEND/js/edit-doc.js";
 
@@ -76,22 +57,60 @@ window.addEventListener("click", (e) => {
   // Show create new Doc
   if (e.target.matches("#new-doc")) {
     console.log("newDoc");
-    createNewDoc();
+    let user = localStorage.getItem("keyUser");
+    console.log(user);
+    createNewDoc(user);
   }
 
   // save new document
   if (e.target.matches("#save-doc-btn")) {
     console.log("saveDoc");
+    let user = JSON.parse(localStorage.getItem("keyUser"));
+    let refId = user[0].person_id;
+
+    console.log(user);
     let title = document.querySelector("#doc-title");
     let content = document.querySelector("#doc-content");
+    let action = document.querySelector("#action");
 
     if (title.value.trim() != "" && content.value.trim() != "") {
       let newDocument = {
         title: title.value.trim(),
         content: content.value.trim(),
+        refId: refId,
+        action: action.value,
       };
       console.log(newDocument);
       saveNewDoc(newDocument);
+    }
+  }
+
+  // Edit Document
+  if (e.target.matches("#edit-btn")) {
+    let myDocument = JSON.parse(localStorage.getItem("keyDoc"));
+    edit(myDocument);
+    console.log("click");
+  }
+  // save EDIT document
+  if (e.target.matches("#save-edit-btn")) {
+    console.log("saveDoc");
+    let user = JSON.parse(localStorage.getItem("keyUser"));
+    let refId = user[0].person_id;
+
+    console.log(user);
+    let title = document.querySelector("#doc-title");
+    let content = document.querySelector("#doc-content");
+    let action = document.querySelector("#action");
+
+    if (title.value.trim() != "" && content.value.trim() != "") {
+      let newDocument = {
+        title: title.value.trim(),
+        content: content.value.trim(),
+        refId: refId,
+        action: action.value,
+      };
+      console.log(newDocument);
+      saveDoc(newDocument);
     }
   }
 
@@ -103,6 +122,7 @@ window.addEventListener("click", (e) => {
 
     getAllDocs(userId);
     let docs = JSON.parse(localStorage.getItem("keyDocs"));
+
     printList(docs);
   }
 
@@ -113,13 +133,6 @@ window.addEventListener("click", (e) => {
     getDoc(docId);
     let myDocument = JSON.parse(localStorage.getItem("keyDoc"));
     docItem(myDocument);
-  }
-
-  // Edit Document
-  if (e.target.matches("#edit-btn")) {
-    let myDocument = JSON.parse(localStorage.getItem("keyDoc"));
-    edit(myDocument);
-    console.log("click");
   }
 
   // Delete document

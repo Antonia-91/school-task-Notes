@@ -18,7 +18,7 @@ router.get("/", function (req, res, next) {
       console.log(err);
     }
 
-    let sql = `SELECT * FROM document `;
+    let sql = `SELECT * FROM konto `;
 
     req.app.locals.con.query(sql, function (err, result) {
       if (err) {
@@ -71,19 +71,26 @@ router.get("/document/:id", function (req, res, next) {
   });
 });
 
-/* POST UPDATE document . */
-router.put("/update/:id", (req, res) => {
+router.post("/saveDoc", function (req, res) {
   if (JSON.stringify(req.body) === "{}") {
     res
       .status(400)
       .send({ message: "Update request for updating user cannot be empty" });
     return;
   }
-  const { title, content, author } = req.body;
+  const { title, content, refId, action } = req.body;
+  console.log(req.body);
 
-  let sql = ` UPDATE document SET doc_content = ${content} AND doc_title = ${title} WHERE doc_author = ${author}`;
-
-  req.app.locals.con.connect(sql, function (err, result) {
+  let sql = "";
+  console.log(action);
+  if (action == "new") {
+    sql = ` INSERT INTO document (doc_content, doc_title, doc_author) VALUES ( '${content}' , '${title}', '${refId}') `;
+  }
+  if (action == "update") {
+    sql = ` UPDATE document SET doc_content = '${content} ' , doc_title = '${title}' WHERE doc_id = '${refId}'`;
+  }
+  console.log(sql);
+  req.app.locals.con.query(sql, function (err, result) {
     if (err) {
       console.log(err);
     }
