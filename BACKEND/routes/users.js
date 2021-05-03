@@ -30,7 +30,7 @@ router.get("/", function (req, res, next) {
   });
 });
 
-/* GET documents listing. */
+/* GET ALL documents listing. */
 router.get("/documents/:id", function (req, res, next) {
   const userID = req.params.id;
   console.log(userID);
@@ -81,7 +81,7 @@ router.post("/saveDoc", function (req, res) {
       .send({ message: "Update request for updating user cannot be empty" });
     return;
   }
-  const { title, content, refId, action } = req.body;
+  const { title, content, refId, action, doc_id } = req.body;
   console.log(req.body);
 
   let sql = "";
@@ -90,7 +90,7 @@ router.post("/saveDoc", function (req, res) {
     sql = ` INSERT INTO document (doc_content, doc_title, doc_author) VALUES ( '${content}' , '${title}', '${refId}') `;
   }
   if (action == "update") {
-    sql = ` UPDATE document SET doc_content = '${content} ' , doc_title = '${title}' WHERE doc_id = '${refId}'`;
+    sql = ` UPDATE document SET doc_content = '${content} ' , doc_title = '${title}' WHERE doc_id = '${doc_id}' AND doc_author = '${refId}'`;
   }
   console.log(sql);
   req.app.locals.con.query(sql, function (err, result) {

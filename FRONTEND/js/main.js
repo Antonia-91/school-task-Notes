@@ -7,6 +7,16 @@ import { docItem, getDoc } from "/FRONTEND/js/doc-item.js";
 import { edit, saveDoc } from "/FRONTEND/js/edit-doc.js";
 import { deleteDoc } from "/FRONTEND/js/delete.js";
 //import { tinymce } from "/FRONTEND/js/edit-doc.js";
+//const { default: tinymce } = require("tinymce");
+
+tinymce.init({
+  selector: "#doc-content",
+  setup: function (editor) {
+    editor.on("change", function () {
+      editor.save();
+    });
+  },
+});
 
 // --- Nav bar media (max-width: 800px) ---//
 
@@ -102,7 +112,9 @@ window.addEventListener("click", (e) => {
   if (e.target.matches("#save-edit-btn")) {
     console.log("saveDoc");
     let user = JSON.parse(localStorage.getItem("keyUser"));
-    let refId = user[0].person_id;
+    let doc_author = user[0].person_id;
+    let doc = JSON.parse(localStorage.getItem("keyDoc"));
+    let doc_id = doc[0].doc_id;
 
     console.log(user);
     let title = document.querySelector("#doc-title");
@@ -113,18 +125,30 @@ window.addEventListener("click", (e) => {
       let newDocument = {
         title: title.value.trim(),
         content: content.value.trim(),
-        refId: refId,
+        refId: doc_author,
         action: action.value,
+        doc_id: doc_id,
       };
       console.log(newDocument);
-      saveDoc(newDocument);
 
-      //redirect to all docs ?
-      let user = JSON.parse(localStorage.getItem("keyUser"));
-      let userId = user[0].person_id;
-      getAllDocs(userId);
-      let docs = JSON.parse(localStorage.getItem("keyDocs"));
-      printList(docs);
+      let current_docId = JSON.parse(localStorage.getItem("keyDoc"))[0].doc_id;
+
+      let allDocs = JSON.parse(localStorage.getItem("keyDocs"));
+      allDocs.forEach((d) => {
+        if (d.doc_id === current_docId) {
+          d.doc_title = newDocument.title;
+          d.doc_content = newDocument.content;
+        }
+        localStorage.setItem("keyDoc", JSON.stringify(d));
+      });
+      console.log(allDocs);
+      localStorage.setItem("keyDocs", JSON.stringify(allDocs)),
+        console.log(allDocs);
+
+      saveDoc(newDocument).then(() => {
+        let docs = JSON.parse(localStorage.getItem("keyDocs"));
+        printList(docs);
+      });
     }
   }
 

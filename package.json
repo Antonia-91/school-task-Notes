@@ -1,0 +1,22 @@
+{
+  "name": "notes",
+  "version": "1.0.0",
+  "description": "OBS npm install tinymce",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Antonia-91/school-task-Notes.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Antonia-91/school-task-Notes/issues"
+  },
+  "homepage": "https://github.com/Antonia-91/school-task-Notes#readme",
+  "dependencies": {
+    "tinymce": "^5.7.1"
+  }
+}

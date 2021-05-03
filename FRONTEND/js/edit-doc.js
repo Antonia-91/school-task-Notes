@@ -6,10 +6,10 @@ export function saveDoc(content) {
     body: JSON.stringify(content),
   })
     .then((res) => res.json())
-    .then((content) => {
-      console.log(content);
-      localStorage.setItem("keyDocs", JSON.stringify(content));
-      return content;
+    .then((result) => {
+      console.log(result);
+      //localStorage.setItem("keyDocs", JSON.stringify(result));
+      return result;
     });
 }
 
