@@ -2,7 +2,7 @@ export function getAllDocs(id) {
   return fetch(`http://localhost:3000/users/documents/${id}`)
     .then((res) => res.json())
     .then((docs) => {
-      //console.log(docs);
+      console.log(docs);
       localStorage.setItem("keyDocs", JSON.stringify(docs));
       return docs;
     })
@@ -11,7 +11,7 @@ export function getAllDocs(id) {
 
 export function printList(docs) {
   document.querySelector(".main-content").innerHTML = "";
-  //console.log(docs);
+  console.log(docs);
 
   let listTamplate = `
     <div class="document-container">
@@ -19,7 +19,7 @@ export function printList(docs) {
     <ul class="all-doc" id="doc-list">
     
    ${docs.map((item, index) => {
-     console.log(item.timeStamp);
+     //console.log(item.timeStamp);
      return ` <li id="${item.doc_id}"> ${item.doc_title} |  ${item.timeStamp} </li>`;
    })}
    </ul>

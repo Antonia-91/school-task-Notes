@@ -8,7 +8,7 @@ export function saveDoc(content) {
     .then((res) => res.json())
     .then((content) => {
       console.log(content);
-      localStorage.setItem("KeyDocuments", JSON.stringify(content));
+      localStorage.setItem("keyDocs", JSON.stringify(content));
       return content;
     });
 }
@@ -37,7 +37,7 @@ export function edit(obj) {
         </textarea>
         <button id="save-edit-btn" class="btn" type="button">
           <span><i class="fas fa-plus"></i></span>
-          Save Document
+          Save Edits
         </button>
         </form>
       </div>

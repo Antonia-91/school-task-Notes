@@ -39,7 +39,7 @@ router.get("/documents/:id", function (req, res, next) {
       console.log(err);
     }
 
-    let sql = `SELECT doc_id, doc_title, timeStamp  FROM document WHERE doc_author = ${userID}`;
+    let sql = `SELECT *  FROM document WHERE doc_author = ${userID}`;
 
     req.app.locals.con.query(sql, function (err, result) {
       if (err) {
@@ -50,6 +50,8 @@ router.get("/documents/:id", function (req, res, next) {
     });
   });
 });
+/*let sql = `SELECT doc_id, doc_title, timeStamp  FROM document WHERE doc_author = ${userID}`;*/
+
 /* GET document BY ID */
 router.get("/document/:id", function (req, res, next) {
   const id = req.params.id;
@@ -71,6 +73,7 @@ router.get("/document/:id", function (req, res, next) {
   });
 });
 
+/* SAVE Doc , new or edit */
 router.post("/saveDoc", function (req, res) {
   if (JSON.stringify(req.body) === "{}") {
     res

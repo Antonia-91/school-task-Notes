@@ -82,10 +82,17 @@ window.addEventListener("click", (e) => {
       };
       console.log(newDocument);
       saveNewDoc(newDocument);
+
+      //redirect to all docs ?
+      let user = JSON.parse(localStorage.getItem("keyUser"));
+      let userId = user[0].person_id;
+      getAllDocs(userId);
+      let docs = JSON.parse(localStorage.getItem("keyDocs"));
+      printList(docs);
     }
   }
 
-  // Edit Document
+  // show Edit Document
   if (e.target.matches("#edit-btn")) {
     let myDocument = JSON.parse(localStorage.getItem("keyDoc"));
     edit(myDocument);
@@ -111,6 +118,13 @@ window.addEventListener("click", (e) => {
       };
       console.log(newDocument);
       saveDoc(newDocument);
+
+      //redirect to all docs ?
+      let user = JSON.parse(localStorage.getItem("keyUser"));
+      let userId = user[0].person_id;
+      getAllDocs(userId);
+      let docs = JSON.parse(localStorage.getItem("keyDocs"));
+      printList(docs);
     }
   }
 

@@ -8,7 +8,7 @@ export function saveNewDoc(content) {
     .then((res) => res.json())
     .then((content) => {
       console.log(content);
-      localStorage.setItem("KeyDocuments", JSON.stringify(content));
+      localStorage.setItem("keyDocs", JSON.stringify(content));
       return content;
     });
 }
