@@ -17,7 +17,7 @@ alternativt : Molly , Molly123
 
 Det är en Headless App. Allt Frontend hittar du i Mappen FrontEnd och allt Backend hittar du i Mappen Backend.
 
-#Backend
+# Backend
 
 ## Databas
 
@@ -28,7 +28,7 @@ Starta servern med: npm run devStart
 ## Varför jag valt att strukturera som jag gjort
 
 Headless eftersom jag tycker det blir "renare"
-Böjade med att skapa en databas, en backend med npx express generator, kopplade ihop det lösen och användarnamn.
+Böjade med att skapa en databas, en backend med npx express generator, kopplade ihop det med mitt angivna lösen och användarnamn.
 Min Databas har två Tables. "konto" & "document".
 Primary Key för document : "doc_author"
 Foreign Key för document till konto : "doc_id"
