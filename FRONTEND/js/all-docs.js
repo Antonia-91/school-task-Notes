@@ -19,6 +19,7 @@ export function printList(docs) {
     <ul class="all-doc" id="doc-list">
     
    ${docs.map((item, index) => {
+     //loopa igenom "docs", ga varje object en li med ett id, en titel  och en timestamp
      //console.log(item.timeStamp);
      return ` <li id="${item.doc_id}"> ${item.doc_title} |  ${item.timeStamp} </li>`;
    })}

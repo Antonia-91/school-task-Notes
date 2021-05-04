@@ -2,7 +2,8 @@
 @import "allDocs";
 @import "newDoc";
 @import "docItem";
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap");
+/*
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap");*/
 
 body {
   background-color: rgb(95, 92, 92);
@@ -12,8 +13,7 @@ body {
 .header {
   display: flex;
   flex-direction: column;
-  box-sizing: border-box;
-  //height: 90vh;
+  //height: 600px;
   color: rgb(231, 231, 240);
   justify-content: center;
   text-align: center;
