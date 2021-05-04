@@ -14,19 +14,18 @@ body {
   display: flex;
   flex-direction: column;
   //height: 600px;
-  color: rgb(231, 231, 240);
+  color: rgb(250, 246, 246);
   justify-content: center;
   text-align: center;
   margin: 15px;
   font-size: 15px;
   border-radius: 10px;
-  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
 }
-.brand-title {
+.brand-title::content {
   cursor: pointer;
 }
 .brand-title:hover {
-  color: blue;
+  color: rgb(255, 145, 0);
 }
 
 .haeder-text {
