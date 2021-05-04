@@ -15,7 +15,7 @@ alternativt : Molly , Molly123
 
 ## Om Appliationen
 
-Det är en Headless App. Allt Frontend hittar du i Mappen FrontEnd och allt Backend hittar du i Mappen Backend.
+Det här är en Headless Application. Allt Frontend hittar du i Mappen FrontEnd och allt Backend hittar du i Mappen Backend.
 
 # Backend
 
@@ -35,4 +35,4 @@ Foreign Key för document till konto : "doc_id"
 Primary Key för konto : "person_id"
 doc_id och person_id är alltså kopplingen mellan mina tables.
 
-Använde Popsql som jag kopplade till min db. Det är en enkelt verktyg som gör den enklet att kära sql querys. Jag kan skapa alla mina Tables där
+Använde Popsql som jag kopplade till min db. Det är en enkelt verktyg som gör den enklet att köra sql querys. Jag kan skapa alla mina Tables där

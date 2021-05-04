@@ -48,4 +48,13 @@ export function edit(obj) {
   document
     .querySelector(".main-content")
     .insertAdjacentHTML("beforeend", editTamplate);
+
+  tinymce.init({
+    selector: "#doc-content",
+    setup: function (editor) {
+      editor.on("change", function () {
+        editor.save();
+      });
+    },
+  });
 }

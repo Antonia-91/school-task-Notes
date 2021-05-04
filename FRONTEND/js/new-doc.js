@@ -50,6 +50,15 @@ export function createNewDoc(user) {
   document
     .querySelector(".main-content")
     .insertAdjacentHTML("beforeend", tamplate);
+
+  tinymce.init({
+    selector: "#doc-content",
+    setup: function (editor) {
+      editor.on("change", function () {
+        editor.save();
+      });
+    },
+  });
 }
 
 // let saveDoc = document.getElementById("save-doc-btn");

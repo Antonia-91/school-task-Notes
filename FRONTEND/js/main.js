@@ -6,17 +6,17 @@ import { header } from "/FRONTEND/js/header.js";
 import { docItem, getDoc } from "/FRONTEND/js/doc-item.js";
 import { edit, saveDoc } from "/FRONTEND/js/edit-doc.js";
 import { deleteDoc } from "/FRONTEND/js/delete.js";
-//import { tinymce } from "/FRONTEND/js/edit-doc.js";
-//const { default: tinymce } = require("tinymce");
 
-tinymce.init({
-  selector: "#doc-content",
-  setup: function (editor) {
-    editor.on("change", function () {
-      editor.save();
-    });
-  },
-});
+// export function tinymce() {
+//   tinymce.init({
+//     selector: "#doc-content",
+//     setup: function (editor) {
+//       editor.on("change", function () {
+//         editor.save();
+//       });
+//     },
+//   });
+// }
 
 // --- Nav bar media (max-width: 800px) ---//
 
@@ -69,6 +69,7 @@ window.addEventListener("click", (e) => {
     console.log("newDoc");
     let user = localStorage.getItem("keyUser");
     console.log(user);
+
     createNewDoc(user);
   }
 
