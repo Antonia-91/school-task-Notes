@@ -1,11 +1,11 @@
 // ---- IMPORT JS -----//
+import { start } from "/FRONTEND/js/start.js";
 import { getUser } from "/FRONTEND/js/login.js";
 import { printList, getAllDocs } from "/FRONTEND/js/all-docs.js";
 import { createNewDoc, saveNewDoc } from "/FRONTEND/js/new-doc.js";
-import { header } from "/FRONTEND/js/header.js";
 import { docItem, getDoc } from "/FRONTEND/js/doc-item.js";
 import { edit, saveDoc } from "/FRONTEND/js/edit-doc.js";
-import { deleteDoc } from "/FRONTEND/js/delete.js";
+import { deleteDoc, sucessDeleted } from "/FRONTEND/js/delete.js";
 
 // --- Nav bar media (max-width: 800px) ---//
 
@@ -24,7 +24,7 @@ console.log(userLoggedIn);
 //-------------- EVENTLISTENERS --------------- //
 window.addEventListener("load", () => {
   updateNavBar(); //Function som printar olika vievs beroende på om vi är inloggade eller inte..
-  header();
+  start();
 });
 
 //--------------  GLOBAL EVENTLISTENERS --------------- //
@@ -32,7 +32,7 @@ window.addEventListener("click", (e) => {
   // show header
   if (e.target.matches(".brand-title")) {
     console.log("header");
-    header();
+    start();
   }
 
   // LOGIN
@@ -83,14 +83,14 @@ window.addEventListener("click", (e) => {
         action: action.value, // kommer i BE kolla om action.value = new or update
       };
       console.log(newDocument);
-      saveNewDoc(newDocument);
-
-      //redirect to all docs
-      let user = JSON.parse(localStorage.getItem("keyUser"));
-      let userId = user[0].person_id;
-      getAllDocs(userId);
-      let docs = JSON.parse(localStorage.getItem("keyDocs"));
-      printList(docs);
+      saveNewDoc(newDocument).then(() => {
+        //redirect to all docs
+        let user = JSON.parse(localStorage.getItem("keyUser"));
+        let userId = user[0].person_id;
+        getAllDocs(userId);
+        let docs = JSON.parse(localStorage.getItem("keyDocs"));
+        printList(docs);
+      });
     }
   }
 
@@ -158,10 +158,11 @@ window.addEventListener("click", (e) => {
     let userId = user[0].person_id;
 
     // anropa funktionen som fetchar
-    getAllDocs(userId);
-    // hämta docs från LS, anropa function som printar.
-    let docs = JSON.parse(localStorage.getItem("keyDocs"));
-    printList(docs);
+    getAllDocs(userId).then(() => {
+      // hämta docs från LS, anropa function som printar.
+      let docs = JSON.parse(localStorage.getItem("keyDocs"));
+      printList(docs);
+    });
   }
 
   // SHOW CLICKED LIST-ITEM
@@ -169,9 +170,10 @@ window.addEventListener("click", (e) => {
     let docId = e.target.id;
     //console.log(e.target.id);
     // anropa function som fetchar. Resultatet av fetchen setts i LS "keyDoc"....  Hämta sedan från LS och anvndänd objectet i nästa function som ska prina..
-    getDoc(docId);
-    let myDocument = JSON.parse(localStorage.getItem("keyDoc"));
-    docItem(myDocument);
+    getDoc(docId).then(() => {
+      let myDocument = JSON.parse(localStorage.getItem("keyDoc"));
+      docItem(myDocument);
+    });
   }
 
   // DELETE DOCUMENT
@@ -180,7 +182,9 @@ window.addEventListener("click", (e) => {
   if (e.target.matches("#delete-btn")) {
     let myDocument = JSON.parse(localStorage.getItem("keyDoc"));
     //let docId = e.target.id;
-    deleteDoc(myDocument);
+    deleteDoc(myDocument).then(() => {
+      sucessDeleted();
+    });
   }
 
   // LOGOUT
@@ -223,20 +227,3 @@ function updateNavBar() {
 
   navbar.innerHTML = liTamplate;
 }
-
-// // ---- Handel LS function ---- //
-// function handelLS() {
-//   let current_docId = JSON.parse(localStorage.getItem("keyDoc"))[0].doc_id;
-
-//   let allDocs = JSON.parse(localStorage.getItem("keyDocs"));
-//   allDocs.forEach((d) => {
-//     if (d.doc_id === current_docId) {
-//       d.doc_title = newDocument.title;
-//       d.doc_content = newDocument.content;
-//     }
-//     localStorage.setItem("keyDoc", JSON.stringify(d));
-//   });
-//   console.log(allDocs);
-//   localStorage.setItem("keyDocs", JSON.stringify(allDocs)),
-//     console.log(allDocs);
-// }

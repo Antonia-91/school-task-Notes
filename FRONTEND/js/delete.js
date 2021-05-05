@@ -11,3 +11,17 @@ export function deleteDoc(obj) {
     })
     .catch((err) => console.log(err));
 }
+
+export function sucessDeleted() {
+  document.querySelector(".main-content").innerHTML = "";
+
+  let Tamplate = `
+
+<h2>Your document has deleted...</h2>
+  
+  `;
+
+  document
+    .querySelector(".main-content")
+    .insertAdjacentHTML("beforeend", Tamplate);
+}
