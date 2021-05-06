@@ -31,7 +31,6 @@ window.addEventListener("load", () => {
 window.addEventListener("click", (e) => {
   // show header
   if (e.target.matches(".brand-title")) {
-    console.log("header");
     start();
   }
 
@@ -194,7 +193,7 @@ window.addEventListener("click", (e) => {
     localStorage.clear();
     userLoggedIn = null;
     updateNavBar();
-    header();
+    start();
   }
 });
 

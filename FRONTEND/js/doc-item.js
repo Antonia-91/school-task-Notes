@@ -11,7 +11,7 @@ export function getDoc(id) {
 
 export function docItem(doc) {
   document.querySelector(".main-content").innerHTML = "";
-
+  console.log(doc);
   let docItemTamplate = `
 
 <div class="doc-item">

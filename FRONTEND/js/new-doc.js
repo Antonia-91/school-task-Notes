@@ -24,7 +24,6 @@ export function createNewDoc(user) {
   <h2>Create new Document</h2>
   <div class="doc-input">
     <div class="doc-wrapper">
-    <form>
     <input type="hidden" id="refId" value="${user[0].person_id}" />
     <input type="hidden" id="action" value="new" />
       <input
@@ -37,11 +36,12 @@ export function createNewDoc(user) {
         placeholder="Write your content here...."
         rows="5"
       ></textarea>
+      
       <button id="save-doc-btn" class="btn" type="button">
         <span><i class="fas fa-plus"></i></span>
         Save Document
       </button>
-      </form>
+
     </div>
   </div>
 </div>
@@ -53,39 +53,14 @@ export function createNewDoc(user) {
 
   tinymce.init({
     selector: "#doc-content",
+    plugins: "code",
+    toolbar:
+      "undo redo | styleselect bold italic | alignleft alignright | code ",
     setup: function (editor) {
       editor.on("change", function () {
         editor.save();
       });
+      console.log("run tiny function ");
     },
   });
 }
-
-// let saveDoc = document.getElementById("save-doc-btn");
-// let docTitle = document.getElementById("doc-title");
-// let docContent = document.getElementById("doc-content");
-
-// let notesObj = [];
-
-// saveDoc.addEventListener("click", (e) => {
-//   if (docTitle.value == "" || docContent.value == "") {
-//     return alert("pleace add title and content");
-//   }
-
-//   let notes = localStorage.getItem("notes");
-//   if (notes == null) {
-//     notesObj = [];
-//   } else {
-//     notesObj = JSON.parse(notes);
-//   }
-
-//   let myObj = {
-//     title: docTitle.value,
-//     content: docContent.value,
-//   };
-//   notesObj.push(myObj);
-//   localStorage.setItem("notes", JSON.stringify(notesObj));
-
-//   docTitle.value = "";
-//   docContent.value = "";
-// });
