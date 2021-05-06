@@ -1,4 +1,5 @@
 export function deleteDoc(obj) {
+  console.log(obj);
   let docId = `${obj[0].doc_id}`;
 
   return fetch(`http://localhost:3000/users/deleteDoc/${docId}`)

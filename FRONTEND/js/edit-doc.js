@@ -49,6 +49,8 @@ export function edit(obj) {
     .querySelector(".main-content")
     .insertAdjacentHTML("beforeend", editTamplate);
 
+  tinymce.remove();
+
   tinymce.init({
     selector: "#doc-content",
     setup: function (editor) {

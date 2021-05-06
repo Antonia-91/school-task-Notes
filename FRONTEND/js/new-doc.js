@@ -50,6 +50,7 @@ export function createNewDoc(user) {
   document
     .querySelector(".main-content")
     .insertAdjacentHTML("beforeend", tamplate);
+  tinymce.remove();
 
   tinymce.init({
     selector: "#doc-content",
