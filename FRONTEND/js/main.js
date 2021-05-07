@@ -211,7 +211,7 @@ function updateNavBar() {
     <li id="new-doc">New Document</li>
     `;
   } else {
-    console.log("not");
+    console.log("not loged in");
     liTamplate = `
     
     <li>
