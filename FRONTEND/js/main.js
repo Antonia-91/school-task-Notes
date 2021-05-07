@@ -127,6 +127,7 @@ window.addEventListener("click", (e) => {
       //console.log(newDocument);
 
       let current_docId = JSON.parse(localStorage.getItem("keyDoc"))[0].doc_id;
+      console.log(current_docId);
 
       //loopa igenom alla docs i LS. väljt ut det som matchar med "current_docId ". Det document som matchar, ta deras värden och spara i "newDocument" object.
       let allDocs = JSON.parse(localStorage.getItem("keyDocs"));
