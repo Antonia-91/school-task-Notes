@@ -135,28 +135,4 @@ router.get("/deleteDoc/:id", function (req, res) {
   });
 });
 
-// // POST login
-// router.post("/login", function (req, res) {
-//   const { userName, password } = req.body;
-
-//   let sql = `SELECT * FROM konto WHERE userName = '${userName}' AND pass = '${password}'`;
-
-//   req.app.locals.con.connect(sql, function (err, result) {
-//     if (err) {
-//       console.log(err);
-//     }
-//     console.log(result);
-
-//     let docQuery = `SELECT * FROM document WHERE doc_author = ${result[0].person_id}`;
-//     req.app.locals.con.query(docQuery, function (err, docResult) {
-//       if (err) {
-//         console.log(err);
-//       }
-//       res.json(result.concat(docResult));
-//     });
-//   });
-
-//   //res.send("respond with a resource");
-// });
-
 module.exports = router;
