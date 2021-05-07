@@ -33,13 +33,13 @@ Headless eftersom jag tycker det blir "renare" att hålla isär min Backend och 
 Började med att skapa en databas, en backend med npx express generator, kopplade ihop det med mitt angivna lösen och användarnamn.
 Min Databas har två Tables. "konto" & "document".
 Primary Key för document : "doc_author"
-Foreign Key för document till konto : "doc_id"
+Foreign Key för document till konto : "doc_id".
 Primary Key för konto : "person_id"
 doc_id och person_id är alltså kopplingen mellan mina tables.
 
 Använde Popsql som jag kopplade till min db. Det är en enkelt verktyg som gör den enklet att köra sql querys. Jag kan skapa alla mina Tables där.
 
-I min FrontEnd valde jag att dela upp mina js filer i moduler, då vajre js fil har sina egna endpontcalls och DOM-tamlpaltes.
+I min FrontEnd valde jag att dela upp mina js filer i moduler, då varje js fil har sina egna endpontcalls och DOM-tamlpaltes.
 Exempelvis: all-doc.js innehåller 2st functioner. En funciton ("getAllDocs") endpontcall som hämtar alla doument från databasen och en funtion ("printList") som gör något med datan som jag får tillbaka.
 
 Jag har även användt mig av LocalStorage för att komma åt den hämtade datan i mina olika fuktioner och vyer.
