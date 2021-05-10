@@ -33,7 +33,8 @@ export function edit(obj) {
         />
         <textarea
           id="doc-content"
-         rows="5">${obj[0].doc_content}
+         rows="5">
+         ${obj[0].doc_content}
         </textarea>
         <button id="save-edit-btn" class="btn" type="button">
           <span><i class="fas fa-plus"></i></span>

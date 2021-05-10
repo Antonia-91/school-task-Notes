@@ -15,10 +15,10 @@ export function start() {
     </div>
     <div class="img">
         <img
-            src="/FRONTEND/IMG_167C0677EF4A-1.jpeg"
+            src="/FRONTEND/start.jpg"
             alt=""
             width="400px"
-            height="400px"
+           
             />
     </div>
 </div>
