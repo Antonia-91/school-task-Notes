@@ -86,9 +86,10 @@ window.addEventListener("click", (e) => {
         //redirect to all docs
         let user = JSON.parse(localStorage.getItem("keyUser"));
         let userId = user[0].person_id;
-        getAllDocs(userId);
-        let docs = JSON.parse(localStorage.getItem("keyDocs"));
-        printList(docs);
+        getAllDocs(userId).then(() => {
+          let docs = JSON.parse(localStorage.getItem("keyDocs"));
+          printList(docs);
+        });
       });
     }
   }

@@ -30,6 +30,23 @@ router.get("/", function (req, res, next) {
   });
 });
 
+// POST login
+router.post("/login", function (req, res) {
+  const { userName, password } = req.body;
+  console.log(req.body);
+  console.log(userName, password);
+
+  let sql = `SELECT * FROM konto WHERE userName = '${userName}' AND pass = '${password}'`;
+
+  req.app.locals.con.query(sql, function (err, result) {
+    if (err) {
+      console.log(err);
+    }
+    console.log(result);
+    res.json(result);
+  });
+});
+
 /* GET ALL documents listing. */
 router.get("/documents/:id", function (req, res, next) {
   const userID = req.params.id;
@@ -93,23 +110,6 @@ router.post("/saveDoc", function (req, res) {
     sql = ` UPDATE document SET doc_content = '${content} ' , doc_title = '${title}' WHERE doc_id = '${doc_id}' AND doc_author = '${refId}'`;
   }
   console.log(sql);
-  req.app.locals.con.query(sql, function (err, result) {
-    if (err) {
-      console.log(err);
-    }
-    console.log(result);
-    res.json(result);
-  });
-});
-
-// POST login
-router.post("/login", function (req, res) {
-  const { userName, password } = req.body;
-  console.log(req.body);
-  console.log(userName, password);
-
-  let sql = `SELECT * FROM konto WHERE userName = '${userName}' AND pass = '${password}'`;
-
   req.app.locals.con.query(sql, function (err, result) {
     if (err) {
       console.log(err);
